@@ -22,12 +22,25 @@ len_million = length(which(housingData$VAL=="24"))
 len_million
 
 fileUrl = "https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FDATA.gov_NGAP.xlsx"
-download.file(fileUrl,destfile="data/NGAP.xlsx",method="internal")
+download.file(fileUrl,destfile="data/NGAP1.xlsx",method="internal") # cannont open file in this cmd, keep trying
 list.files("data")
 
+
+#Sys.setenv(JAVA_HOME='C:\\Program Files\\Java\\jre7') # for 64-bit version
+ 
+# install.packages("rJava")
+# install.packages("xlsxjars")
+# .jinit(parameters="-Xmx512m")
+# library(xlsxjars)
 library(xlsx)
-NGAP = read.xlsx("data/NGAP.xlsx", sheetIndex = 1, header = TRUE)
+NGAP = read.xlsx("data/NGAP_MAN.xlsx", sheetIndex = 1, header = TRUE)
+#NGAP = read.xlsx("data/NGAP_MAN.xlsx", sheetIndex = 1)
+
 head(NGAP)
 
 #TBD : update R version 
 
+# check java env
+# ref : https://stat.ethz.ch/pipermail/r-help/2012-August/321049.html
+library(rJava)
+.jinit()
